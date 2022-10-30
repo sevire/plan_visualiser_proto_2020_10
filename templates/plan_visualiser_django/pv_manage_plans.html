@@ -1,0 +1,27 @@
+{% extends "plan_visualiser_django/pv_base.html" %}
+
+{% block page_heading %}Manage Plans{% endblock %}
+
+{% block main_content %}
+
+<button type="button" class="btn btn-primary" onclick="location.href='add-plan'">Add Plan File</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>File Name</th>
+            <th>File Type</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for plan in plan_files %}
+        <tr>
+            <td>{{ plan.original_file_name }}</td>
+            <td>{{ plan.file_type }}</td>
+            <td><button type="button" class="btn btn-sm align-middle btn-danger" onclick="location.href='delete-plan/{{ plan.id }}'">Delete</button></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
