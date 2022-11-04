@@ -17,9 +17,8 @@
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">LOGO</a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-white">Home</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Manage Plans</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Manage Visualisations</a></li>
+                <li><a href="/pv/manage-plans" class="nav-link px-2 text-white">Home</a></li>
+                <li><a href="/pv/manage-plans" class="nav-link px-2 text-white">Manage Plans</a></li>
             </ul>
 
             <div class="text-end">
@@ -29,7 +28,7 @@
     </div>
 </header>
 <div class="container">
-    <h1> {% block page_heading %} {% endblock %}</h1>
+    <h1>{% block page_heading %} {% endblock %}</h1>
 {% if messages %}
 {% for message in messages %}
 <div class="container-fluid p-0">
