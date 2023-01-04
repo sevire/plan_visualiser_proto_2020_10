@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from plan_visualiser_2020_10 import settings
+from plan_visualiser_2022_10 import settings
 from plan_visualiser_django.forms import PlanForm, VisualFormForAdd, VisualFormForEdit
 from plan_visualiser_django.models import Plan, PlanVisual
 from django.contrib import messages
@@ -68,7 +68,11 @@ def add_visual(request, plan_id):
         return HttpResponseRedirect(reverse('manage_visuals', args=[plan_id]))
     elif request.method == "GET":
         form = VisualFormForAdd()
-        return render(request=request, template_name="plan_visualiser_django/pv_add_visual.html", context={'form': form})
+        context = {
+            'add_or_edit': 'Add',
+            'form': form
+        }
+        return render(request=request, template_name="plan_visualiser_django/pv_add_edit_visual.html", context=context)
     else:
         raise Exception("Unrecognised METHOD {request['METHOD']}")
 
@@ -81,12 +85,16 @@ def edit_visual(request, visual_id):
         if visual_form.is_valid():
             # Save fields from form but don't commit so can modify other fields before comitting.
             visual_record = visual_form.save()
-            messages.success(request, "New visual for plan saved successfully")
+            messages.success(request, "Visual updated successfully")
 
         return HttpResponseRedirect(reverse('manage_visuals', args=[plan_id]))
     elif request.method == "GET":
         form = VisualFormForEdit(instance=instance)
-        return render(request=request, template_name="plan_visualiser_django/pv_add_visual.html", context={'form': form})
+        context = {
+            'add_or_edit': 'Edit',
+            'form': form
+        }
+        return render(request=request, template_name="plan_visualiser_django/pv_add_edit_visual.html", context=context)
     else:
         raise Exception("Unrecognised METHOD {request['METHOD']}")
 
