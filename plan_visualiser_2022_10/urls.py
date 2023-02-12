@@ -20,5 +20,6 @@ import plan_visualiser_django
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("pv/", include('plan_visualiser_django.urls'))
+    path("pv/", include('plan_visualiser_django.urls')),
+    path('api/', include('api.urls'))
 ]

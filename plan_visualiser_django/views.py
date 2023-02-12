@@ -8,8 +8,10 @@ from django.urls import reverse
 
 from plan_visualiser_2022_10 import settings
 from plan_visualiser_django.forms import PlanForm, VisualFormForAdd, VisualFormForEdit
-from plan_visualiser_django.models import Plan, PlanVisual
+from plan_visualiser_django.models import Plan, PlanVisual, PlanField
 from django.contrib import messages
+
+from plan_visualiser_django.services.plan_reader import ExcelXLSFileReader
 
 
 # Create your views here.
@@ -168,3 +170,21 @@ def manage_visuals(request, plan_id):
         'visuals': plan_visuals
     }
     return render(request, "plan_visualiser_django/pv_manage_visuals.html", context)
+
+
+def format_and_layout_visual(request, visual_id):
+    visual = PlanVisual.objects.get(id=visual_id)  # get() returns exactly one result or raises an exception
+    plan = visual.plan
+    mapping_type = plan.file_type.plan_field_mapping_type
+
+    plan_file = plan.file.path
+    file_reader = ExcelXLSFileReader()
+    raw_data = file_reader.read(plan_file)
+    parsed_data = file_reader.parse(raw_data, plan_field_mapping=mapping_type)
+
+    context = {
+        'headings': PlanField.plan_headings(),
+        'plan_activities': parsed_data
+    }
+
+    return render(request, "plan_visualiser_django/pv_format_and_layout_visual.html", context)

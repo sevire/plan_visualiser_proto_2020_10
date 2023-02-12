@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'plan_visualiser_django.apps.PlanVisualiserDjangoConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

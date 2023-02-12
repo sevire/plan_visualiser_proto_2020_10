@@ -13,15 +13,21 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/plan_visualiser_django/tests" isTestSource="true" />
+    </content>
     <orderEntry type="jdk" jdkName="Pipenv (plan_visualiser_2022_10)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+  <component name="PyDocumentationSettings">
+    <option name="format" value="PLAIN" />
+    <option name="myDocStringFormat" value="Plain" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/../plan_visualiser_2020_10/templates" />
+        <option value="$MODULE_DIR$/templates" />
       </list>
     </option>
   </component>

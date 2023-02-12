@@ -9,5 +9,6 @@ urlpatterns = [
     path("manage-plans", views.manage_plans, name="manage_plans"),
     path("delete-plan/<int:pk>/", views.delete_plan, name='delete_plan'),
     path("delete-visual/<int:pk>/", views.delete_visual, name='delete_visual'),
-    path("manage-visuals/<int:plan_id>/", views.manage_visuals, name='manage_visuals')
+    path("manage-visuals/<int:plan_id>/", views.manage_visuals, name='manage_visuals'),
+    path("layout-visual/<int:visual_id>/", views.format_and_layout_visual, name='layout-visual')
 ]
